@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct TCASampleApp: App {
+        
+    static let store = Store(initialState: SearchFeature.State()) {
+        // Reducer를 생성
+        SearchFeature()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchView(store: Self.store)
         }
     }
 }
