@@ -45,6 +45,11 @@ struct SearchFeature {
         case forecastResponse(GeocodingSearch.Result.ID, Result<Forecast, any Error>)
     }
     
+    private enum CancelID {
+        case search
+        case forecast
+    }
+    
     // Reduce가 weather api를 사용하기 위해 필요
     @Dependency(\.weatherClient) var weatherClient
     
@@ -70,6 +75,7 @@ struct SearchFeature {
                         try await self.weatherClient.search(query: query)
                     }))
                 }
+                .cancellable(id: CancelID.search, cancelInFlight: true)
                 
             case let .searchResponse(.success(response)):
                 state.isRequestingSearch = false
@@ -78,7 +84,7 @@ struct SearchFeature {
                 
             case let .searchResponse(.failure(error)):
                 state.isRequestingSearch = false
-                state.errorMessage = "\(error.localizedDescription)"
+                state.errorMessage = "검색 실패: \(error.localizedDescription)"
                 return .none
 // searching location --------------------------------------------------
 
@@ -96,6 +102,8 @@ struct SearchFeature {
                         )
                     )
                 }
+                // cancelInFlight: 진행중인api를 캔슬
+                .cancellable(id: CancelID.forecast, cancelInFlight: true)
                 
             case  let .forecastResponse(id, .success(forecast)):
                 print("successed forecastResponse")
@@ -115,8 +123,9 @@ struct SearchFeature {
                 
             case let .forecastResponse(_, .failure(error)):
                 state.resultForecastRequestInFlight = nil
+                state.results = []
+                state.errorMessage = "날씨 정보를 가져올 수 없습니다: \(error.localizedDescription)"
                 print("failed forecastResponse: \(error.localizedDescription)")
-                // TODO: Adding Error handling
                 return .none
 // fetching location's forecast --------------------------------------------------
             }
