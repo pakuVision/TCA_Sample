@@ -23,7 +23,7 @@ struct SearchView: View {
                 ZStack {
                     contentSection
 
-                    if store.isLoading {
+                    if store.isRequestingSearch {
                         ProgressView()
                     }
                 }
@@ -68,8 +68,61 @@ struct SearchView: View {
     private var contentSection: some View {
         List {
             ForEach(store.results) { location in
-                Text("location!: \(location.name)")
+                locationButton(location)
             }
         }
     }
+    
+    @ViewBuilder
+    private func locationButton(_ location: GeocodingSearch.Result) -> some View {
+        Button {
+            store.send(.locationButtonTapped(location))
+        } label: {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(location.name)
+                    if store.resultForecastRequestInFlight?.id == location.id {
+                        ProgressView()
+                    }
+                }
+                if location.id == store.weather?.id {
+                    weatherView(store.weather)
+                        .foregroundStyle(.black)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func weatherView(_ weather: SearchFeature.State.Weather?) -> some View {
+        if let weather {
+          let days = weather.days
+            .enumerated()
+            .map { idx, weather in formattedWeather(day: weather, isToday: idx == 0) }
+
+          VStack(alignment: .leading) {
+            ForEach(days, id: \.self) { day in
+              Text(day)
+            }
+          }
+          .padding(.leading, 16)
+        }
+    }
 }
+
+private func formattedWeather(day: SearchFeature.State.Weather.Day, isToday: Bool) -> String {
+  let date =
+    isToday
+    ? "Today"
+    : day.date
+  let min = "\(day.temperatureMin)\(day.temperatureMinUnit)"
+  let max = "\(day.temperatureMax)\(day.temperatureMaxUnit)"
+
+  return "\(date), \(min) – \(max)"
+}
+
+private let dateFormatter: DateFormatter = {
+  let formatter = DateFormatter()
+  formatter.dateFormat = "EEEE"
+  return formatter
+}()
