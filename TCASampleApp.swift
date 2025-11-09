@@ -11,13 +11,19 @@ import ComposableArchitecture
 @main
 struct TCASampleApp: App {
         
-    static let store = Store(initialState: SearchFeature.State()) {
-        // Reducer를 생성
-        SearchFeature()
+//    static let store = Store(initialState: SearchFeature.State()) {
+//        // Reducer를 생성
+//        SearchFeature()
+//    }
+    
+    static let store = Store(initialState: Todos.State()) {
+        Todos() // Reducer
     }
+    
+    
     var body: some Scene {
         WindowGroup {
-            SearchView(store: Self.store)
+            TodoTodosView(store: Self.store)
         }
     }
 }
