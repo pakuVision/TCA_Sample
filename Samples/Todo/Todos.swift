@@ -22,7 +22,9 @@ struct Todos {
         var editMode: EditMode = .inactive
         var filter: Filter = .all
         var todos: IdentifiedArrayOf<Todo.State> = []
+        
         var filteredTodos: IdentifiedArrayOf<Todo.State> {
+            
             switch filter {
             case .active:
                 return self.todos.filter { !$0.isComplete }
@@ -40,7 +42,6 @@ struct Todos {
         case binding(BindingAction<State>)
         case sortCompletedTodos
         case todos(IdentifiedActionOf<Todo>)
-        
     }
     
     @Dependency(\.continuousClock) var clock
@@ -68,7 +69,11 @@ struct Todos {
                     await send(.sortCompletedTodos, animation: .default)
                 }
             case .sortCompletedTodos:
-                print("sort!!!")
+                // sort { $0, $1 in
+                // true를  반환하면 $0이 $1보다 앞에 위치
+                // false를 반환하면 $1이 $0보다 앞에 위치
+                // 완료한 todo를 뒤쪽으로
+                state.todos.sort { !$0.isComplete && $1.isComplete }
                 return .none
             case .todos:
                 // .todos의 특정 케이스에 매칭되지 않은 모든 나머지 todos 액션처리
@@ -86,13 +91,22 @@ struct Todos {
     }
 }
 
-struct TodoTodosView: View {
+struct TodosView: View {
     
     @Bindable var store: StoreOf<Todos>
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
+                
+                Picker("Filter", selection: $store.filter.animation()) {
+                    ForEach(Filter.allCases, id: \.self) { filter in
+                        Text(filter.rawValue).tag(filter)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
+                
                 todosView
             }
             .navigationTitle("Todos")

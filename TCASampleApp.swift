@@ -23,7 +23,7 @@ struct TCASampleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TodoTodosView(store: Self.store)
+            TodosView(store: Self.store)
         }
     }
 }
