@@ -10,6 +10,7 @@ import Foundation
 import Testing
 
 @testable import TCASample
+internal import SwiftUI
 
 @MainActor
 struct TodosTests {
@@ -79,6 +80,71 @@ struct TodosTests {
                 state.todos[0]
             ]
         }
+    }
+    
+    @Test
+    func testDeleteTodo() async {
+        let state = Todos.State(todos: [
+            Todo.State(id: .init(0), description: "", isComplete: false),
+            Todo.State(id: .init(1), description: "", isComplete: false)
+        ])
         
+        let store = TestStore(initialState: state) {
+            Todos()
+        }
+        
+        await store.send(.delete([1])) { state in
+            state.todos = [
+                Todo.State(id: .init(0), description: "", isComplete: false)
+            ]
+        }
+    }
+    
+    @Test
+    func clearCompleted() async {
+        let state = Todos.State(todos: [
+            Todo.State(id: .init(0), description: "", isComplete: false),
+            Todo.State(id: .init(0), description: "", isComplete: true)
+        ])
+        
+        let store = TestStore(initialState: state) {
+            Todos()
+        }
+        
+        await store.send(.clearCompletedButtonTapped) { state in
+            state.todos = [state.todos[0]]
+        }
+    }
+    
+    @Test
+    func testMove() async {
+        let todoA = Todo.State(id: .init(0), description: "A", isComplete: false)
+        let todoB = Todo.State(id: .init(1), description: "B", isComplete: false)
+        let todoC = Todo.State(id: .init(2), description: "C", isComplete: false)
+        
+        let state = Todos.State(todos: [todoA, todoB, todoC])
+        
+        let store = TestStore(initialState: state) {
+            Todos()
+        } withDependencies: {
+            $0.continuousClock = clock
+        }
+        
+        // bindingmode의 editmode가 active되었을 시의 결과는
+        await store.send(\.binding.editMode, .active) { state in
+            // state의 editmode가 active로 되어 있어야 함
+            state.editMode = .active
+        }
+        
+        // toOffset: 2 는  제거 전 2번째 인덱스 앞에 삽입 한다는 뜻
+        await store.send(.move([0], 2)) { state in
+            state.todos = [todoB, todoA, todoC]
+        }
+        
+        // 100ms 후 정렬 액션 발생
+        await clock.advance(by: .milliseconds(100))
+        
+        // 모두 미완료라서 순서 변화 없음
+        await store.receive(\.sortCompletedTodos)
     }
 }

@@ -17,6 +17,7 @@
 		FAB31A752EBF36D500837A99 /* Todos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB31A742EBF36D100837A99 /* Todos.swift */; };
 		FAB31A7A2EBF385400837A99 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB31A792EBF385100837A99 /* Todo.swift */; };
 		FAB31A7F2EBF41A300837A99 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FAB31A7E2EBF41A300837A99 /* ComposableArchitecture */; };
+		FACB7FE52EC9886B00457807 /* TodosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB7FE32EC9886B00457807 /* TodosTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		FAB31A742EBF36D100837A99 /* Todos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todos.swift; sourceTree = "<group>"; };
 		FAB31A792EBF385100837A99 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		FAB31A842EC0904200837A99 /* TCASampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCASampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FACB7FE32EC9886B00457807 /* TodosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -105,6 +107,7 @@
 			children = (
 				FAB31A792EBF385100837A99 /* Todo.swift */,
 				FAB31A742EBF36D100837A99 /* Todos.swift */,
+				FACB7FE32EC9886B00457807 /* TodosTests.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACB7FE52EC9886B00457807 /* TodosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,6 +42,9 @@ struct Todos {
         case binding(BindingAction<State>)
         case sortCompletedTodos
         case todos(IdentifiedActionOf<Todo>)
+        case delete(IndexSet)
+        case move(IndexSet, Int)
+
     }
     
     @Dependency(\.continuousClock) var clock
@@ -69,6 +72,7 @@ struct Todos {
                     await send(.sortCompletedTodos, animation: .default)
                 }
             case .sortCompletedTodos:
+                print("sortCompletedTodos!!!")
                 // sort { $0, $1 in
                 // true를  반환하면 $0이 $1보다 앞에 위치
                 // false를 반환하면 $1이 $0보다 앞에 위치
@@ -78,6 +82,38 @@ struct Todos {
             case .todos:
                 // .todos의 특정 케이스에 매칭되지 않은 모든 나머지 todos 액션처리
                 return .none
+                
+            case let .delete(indexSet):
+                let filteredTodos = state.filteredTodos
+                for index in indexSet {
+                    let id = filteredTodos[index].id
+                    state.todos.remove(id: id)
+                }
+                return .none
+                
+            case var .move(source, destination):
+                
+                // current tap이 completed인 경우 (완료 todos를 표시중일때)
+                if state.filter == .completed {
+                    
+                    source = IndexSet(
+                        source
+                            .map { state.filteredTodos[$0] }
+                            .compactMap { state.todos.index(id: $0.id )}
+                    )
+                    
+                    destination = (destination < state.filteredTodos.endIndex ?
+                              state.todos.index(id: state.filteredTodos[destination].id) : state.todos.endIndex) ?? destination
+                }
+                
+                // drag and drop처리
+                state.todos.move(fromOffsets: source, toOffset: destination)
+                
+                // 100ms 후 완료된 요소정렬
+                return .run { send in
+                    try await self.clock.sleep(for: .milliseconds(100))
+                    await send(.sortCompletedTodos)
+                }
             }
         }
         // 부모 Reducer가 자식 Reducer들을 관리하기 위한 TCA의 Composition 메커니즘이다.
@@ -111,7 +147,7 @@ struct TodosView: View {
             }
             .navigationTitle("Todos")
             .toolbar(content: {
-                HStack {
+                HStack(spacing: 20) {
                     EditButton()
                     Button("Clear Completed") {
                         
@@ -120,7 +156,10 @@ struct TodosView: View {
                         store.send(.addTodoButtonTapped, animation: .easeInOut)
                     }
                 }
+                .padding(.trailing)
             })
+            // EditButton()을 store.editmode로 바인딩
+            // list쪽에 .onDelete .onMove등을 추가
             .environment(\.editMode, $store.editMode)
         }
     }
@@ -137,6 +176,8 @@ struct TodosView: View {
             ForEach(store.scope(state: \.filteredTodos, action: \.todos)) { store in
                 TodoView(store: store)
             }
+            .onDelete { store.send(.delete($0)) }
+            .onMove { store.send(.move($0, $1)) }
         }
     }
 }
