@@ -72,7 +72,6 @@ struct Todos {
                     await send(.sortCompletedTodos, animation: .default)
                 }
             case .sortCompletedTodos:
-                print("sortCompletedTodos!!!")
                 // sort { $0, $1 in
                 // true를  반환하면 $0이 $1보다 앞에 위치
                 // false를 반환하면 $1이 $0보다 앞에 위치

@@ -10,20 +10,35 @@ import ComposableArchitecture
 
 @main
 struct TCASampleApp: App {
-        
-//    static let store = Store(initialState: SearchFeature.State()) {
-//        // Reducer를 생성
-//        SearchFeature()
+    
+    // MARK: Root -----------------------------------------
+    // NavigationStack + path로 간단한 화면천이 샘플
+//    static let store = Store(initialState: RootFeature.State()) {
+//        RootFeature()
+//    }
+//    var body: some Scene {
+//        WindowGroup {
+//            RootView(store: Self.store)
+//        }
 //    }
     
-    static let store = Store(initialState: Todos.State()) {
-        Todos() // Reducer
+    // MARK: TODO -----------------------------------------
+//    static let store = Store(initialState: Todos.State()) {
+//        Todos() // Reducer
+//    }
+//    var body: some Scene {
+//        WindowGroup {
+//            TodosView(store: Self.store)
+//        }
+//    }
+    
+    // MARK: SyncUps -----------------------------------------
+    static let store = Store(initialState: SyncUpFeature.State()) {
+        SyncUpFeature()
     }
-    
-    
     var body: some Scene {
         WindowGroup {
-            TodosView(store: Self.store)
+            SyncUpView(store: Self.store)
         }
     }
 }

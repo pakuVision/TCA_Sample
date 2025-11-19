@@ -104,7 +104,7 @@ struct TodosTests {
     func clearCompleted() async {
         let state = Todos.State(todos: [
             Todo.State(id: .init(0), description: "", isComplete: false),
-            Todo.State(id: .init(0), description: "", isComplete: true)
+            Todo.State(id: .init(1), description: "", isComplete: true)
         ])
         
         let store = TestStore(initialState: state) {
