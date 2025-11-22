@@ -9,9 +9,12 @@ import IdentifiedCollections
 import SwiftUI
 import Tagged
 
+nonisolated
 struct SyncUp: Equatable, Identifiable, Codable {
     let id: Tagged<Self, UUID>
-    var attendees: IdentifiedArrayOf<Attendee>
+    var title: String = ""
+    var duration: Duration = .seconds(60 * 5) // 5分
+    var attendees: IdentifiedArrayOf<Attendee> 
 }
 
 struct Attendee: Equatable, Identifiable, Codable {
