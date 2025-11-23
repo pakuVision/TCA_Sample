@@ -44,7 +44,7 @@ struct SyncUpsList {
             switch action {
             case .addSyncUpButtonTapped:
                 state.destination = .add(
-                    SyncUpForm.State(syncUp: SyncUp(id: SyncUp.ID(uuid()), attendees: []))
+                    SyncUpForm.State(syncUp: SyncUp(id: uuid(), attendees: []))
                 )
                 return .none
             case let .onDelete(indexSet):
@@ -131,10 +131,14 @@ struct CardView: View {
                 .font(.headline)
             Spacer()
             HStack {
+                Label("\(syncUp.attendees.count)", systemImage: "person.3")
                 Spacer()
                 Label(syncUp.duration.formatted(.units()), systemImage: "clock")
             }
+            .font(.caption)
         }
+        .padding()
+        .foregroundStyle(.bubblegum)
     }
 }
 

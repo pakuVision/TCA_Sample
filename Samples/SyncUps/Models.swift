@@ -11,14 +11,14 @@ import Tagged
 
 nonisolated
 struct SyncUp: Equatable, Identifiable, Codable {
-    let id: Tagged<Self, UUID>
+    let id: UUID
     var title: String = ""
     var duration: Duration = .seconds(60 * 5) // 5分
     var attendees: IdentifiedArrayOf<Attendee> 
 }
 
 struct Attendee: Equatable, Identifiable, Codable {
-    let id: Tagged<Self, UUID>
+    let id: UUID
     var name = ""
 }
 
