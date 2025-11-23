@@ -36,12 +36,19 @@ struct SyncUpFeature {
         
         Reduce { state, action in
             switch action {
-            case let .path(action):
+                
+                
+            case let .path(.element(_, action: .detail(delegateAction))):
+                print("detail!!!")
+                return .none
+                
+            case .path:
                 return .none
             case .syncUpsList:
                 return .none
             }
         }
+        .forEach(\.path, action: \.path)
     }
 }
 

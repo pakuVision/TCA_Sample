@@ -24,6 +24,8 @@ struct SyncUpDetail {
     @ObservableState
     struct State: Equatable {
         @Presents var destination: Destination.State?
+        
+        // 상위 Feature의 @Shared syncUps의 각 요소인 SyncUp을 하위Feature(여기) 에서 바인딩하기 위해서 @Shared 를 사용 (@Binding같은 개념)
         @Shared var syncUp: SyncUp
     }
     

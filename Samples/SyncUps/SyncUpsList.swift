@@ -87,7 +87,19 @@ struct SyncUpsListView: View {
     var body: some View {
         List {
             ForEach(Array(store.$syncUps)) { $syncup in
-                CardView(syncUp: syncup)
+                
+                // TCA용 NavigationLink 래퍼
+                // @Shared syncups의 각 요소를 하위Feature에서 @Shared로서 바인딩
+                // SyncUpFeature.Path .State 라는 타입이 자동으로 생성되는 이유는 Path가 @Reducer로 선언된 Feature이기 때문
+                // @Reducer로 선언된 enum은 자동으로 .State .Action타입을 생성한다.
+                
+                // 여기서 detail로 천이하기 위해서는 상위Feature Path의 detail.State를 설정해야 한다.
+                // SyncUpFeature.Path.State.detail(...)
+                let state = SyncUpFeature.Path.State.detail(SyncUpDetail.State(syncUp: $syncup))
+                NavigationLink(state: state) {
+                    // Label
+                    CardView(syncUp: syncup)
+                }
             }
             .onDelete { indexSet in
                 store.send(.onDelete(indexSet))
