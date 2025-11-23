@@ -100,6 +100,7 @@ struct SyncUpsListView: View {
                     // Label
                     CardView(syncUp: syncup)
                 }
+                .listRowBackground(syncup.theme.mainColor)
             }
             .onDelete { indexSet in
                 store.send(.onDelete(indexSet))
@@ -150,7 +151,7 @@ struct CardView: View {
             .font(.caption)
         }
         .padding()
-        .foregroundStyle(.bubblegum)
+        .foregroundStyle(syncUp.theme.textColor)
     }
 }
 

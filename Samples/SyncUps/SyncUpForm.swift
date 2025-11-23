@@ -93,6 +93,8 @@ struct SyncUpFormView: View {
                 Spacer()
                 Text(store.syncUp.duration.formatted(.units()))
             }
+            
+            ThemePicker(selection: $store.syncUp.theme)
         } header: {
             Text("Sync-up Info")
         }
@@ -115,6 +117,25 @@ struct SyncUpFormView: View {
         } header: {
             Text("Attendees")
         }
+    }
+}
+
+struct ThemePicker: View {
+    
+    @Binding var selection: Theme
+    
+    var body: some View {
+        Picker("Theme", selection: $selection) {
+            ForEach(Theme.allCases) { theme in
+                HStack {
+                    Text(theme.name)
+                    Spacer()
+                    Image(systemName: "paintpalette")
+                }
+                .accentColor(.white)
+            }
+        }
+        .accentColor(selection.mainColor)
     }
 }
 
