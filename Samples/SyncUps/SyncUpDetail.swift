@@ -31,7 +31,10 @@ struct SyncUpDetail {
     
     enum Action {
         case destination(PresentationAction<Destination.Action>)
+        case startMeetingButtonTapped
         case cancelEditButtonTapped
+        case deleteButtonTapped
+        case editButtonTapped
     }
     
     var body: some Reducer<State, Action> {
@@ -39,7 +42,13 @@ struct SyncUpDetail {
             switch action {
             case .destination:
                 return .none
+            case .startMeetingButtonTapped:
+                return .none
             case .cancelEditButtonTapped:
+                return .none
+            case .editButtonTapped:
+                return .none
+            case .deleteButtonTapped:
                 return .none
             }
         }
@@ -54,7 +63,75 @@ struct SyncUpDetailView: View {
     
     var body: some View {
         Form {
-            Text("SyncUpDetailView")
+            infoSectionView
+            attendeesSectionView
+        }
+        .toolbar {
+            Button("Edit") {
+                store.send(.editButtonTapped)
+            }
+        }
+    }
+    
+    private var infoSectionView: some View {
+        Section {
+            Button {
+                store.send(.startMeetingButtonTapped)
+            } label: {
+                Label("Start Meeting", systemImage: "timer")
+                    .font(.headline)
+                    .foregroundStyle(Color.accentColor)
+            }
+            HStack {
+                Label("Theme", systemImage: "paintpalette")
+                Spacer()
+                Text(store.syncUp.theme.name)
+                    .padding(4)
+                    .foregroundStyle(store.syncUp.theme.textColor)
+                    .background(RoundedRectangle(cornerRadius: 4)
+                        .fill(store.syncUp.theme.mainColor)
+                    )
+            }
+        } header: {
+            Text("Sync-up Info")
+        }
+    }
+    
+    private var meetingSectionView: some View {
+        Section {
+            ForEach(store.syncUp.meetings) { meeting in
+                NavigationLink(
+                    state: SyncUpFeature.Path.State.meeting(meeting, syncUp: store.syncUp)
+                ) {
+                    HStack {
+                        Image(systemName: "calender")
+                        Text(meeting.date, style: .date)
+                        Text(meeting.date, style: .time)
+                    }
+                }
+            }
+        } header: {
+            Text("Past meeting")
+        }
+    }
+    
+    private var attendeesSectionView: some View {
+        Section {
+            ForEach(store.syncUp.attendees) { attendee in
+                Label(attendee.name, systemImage: "person")
+            }
+        } header: {
+            Text("Attendees")
+        }
+    }
+    
+    private var deleteSectionView: some View {
+        Section {
+            Button("Delete") {
+                store.send(.deleteButtonTapped)
+            }
+            .foregroundStyle(.red)
+            .frame(maxWidth: .infinity)
         }
     }
 }

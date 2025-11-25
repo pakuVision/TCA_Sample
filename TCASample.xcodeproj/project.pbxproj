@@ -27,6 +27,7 @@
 		FACB7FFA2EC9F0FE00457807 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB7FF92EC9F0FC00457807 /* Detail.swift */; };
 		FACB7FFC2ECB682800457807 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB7FFB2ECB682500457807 /* Settings.swift */; };
 		FAEE47EB2ED1DE9E00FBD3E0 /* SyncUpForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE47EA2ED1DE9300FBD3E0 /* SyncUpForm.swift */; };
+		FAEE47EE2ED4569900FBD3E0 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE47ED2ED4569300FBD3E0 /* SpeechRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		FACB7FF92EC9F0FC00457807 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		FACB7FFB2ECB682500457807 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FAEE47EA2ED1DE9300FBD3E0 /* SyncUpForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpForm.swift; sourceTree = "<group>"; };
+		FAEE47ED2ED4569300FBD3E0 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		FACB7FE62EC9B15200457807 /* SyncUps */ = {
 			isa = PBXGroup;
 			children = (
+				FAEE47EC2ED4568400FBD3E0 /* Dependencies */,
 				FACB7FE72EC9B49600457807 /* SyncUp.swift */,
 				FACB7FE92EC9B5D900457807 /* SyncUpsList.swift */,
 				FAEE47EA2ED1DE9300FBD3E0 /* SyncUpForm.swift */,
@@ -170,6 +173,14 @@
 				FACB7FFB2ECB682500457807 /* Settings.swift */,
 			);
 			path = SampleNavigationStack;
+			sourceTree = "<group>";
+		};
+		FAEE47EC2ED4568400FBD3E0 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				FAEE47ED2ED4569300FBD3E0 /* SpeechRecognizer.swift */,
+			);
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +296,7 @@
 				FAB31A752EBF36D500837A99 /* Todos.swift in Sources */,
 				FAEE47EB2ED1DE9E00FBD3E0 /* SyncUpForm.swift in Sources */,
 				FACB7FEA2EC9B5E300457807 /* SyncUpsList.swift in Sources */,
+				FAEE47EE2ED4569900FBD3E0 /* SpeechRecognizer.swift in Sources */,
 				FA2B5CA62EB85D8A006CCAB8 /* ContentView.swift in Sources */,
 				FACB7FEC2EC9BE0D00457807 /* SyncUpDetail.swift in Sources */,
 				FA2B5CA72EB85D8A006CCAB8 /* CounterView.swift in Sources */,

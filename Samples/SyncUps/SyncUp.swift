@@ -14,7 +14,7 @@ struct SyncUpFeature {
     @Reducer
     enum Path {
         case detail(SyncUpDetail)
-        case meeting
+        case meeting(Meeting, syncUp: SyncUp)
         case record
     }
     
@@ -37,12 +37,12 @@ struct SyncUpFeature {
         Reduce { state, action in
             switch action {
                 
-                
+            // detailView에서 델레게이트 액션을 받았을 때
             case let .path(.element(_, action: .detail(delegateAction))):
-                print("detail!!!")
                 return .none
                 
             case .path:
+                print("path!!")
                 return .none
             case .syncUpsList:
                 return .none
@@ -63,7 +63,7 @@ struct SyncUpView: View {
         } destination: { store in
             switch store.case {
             case let .detail(store):
-                Text("DetailView")
+                SyncUpDetailView(store: store)
             case .meeting:
                 Text("MeetView")
             case .record:

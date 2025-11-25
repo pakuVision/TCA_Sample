@@ -44,7 +44,7 @@ struct SyncUpsList {
             switch action {
             case .addSyncUpButtonTapped:
                 state.destination = .add(
-                    SyncUpForm.State(syncUp: SyncUp(id: uuid(), attendees: []))
+                    SyncUpForm.State(syncUp: SyncUp(id: uuid(), attendees: [], meetings: []))
                 )
                 return .none
             case let .onDelete(indexSet):
