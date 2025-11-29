@@ -29,6 +29,7 @@ import ComposableArchitecture
 
 // ####### 외부 서비스는 모두 DependencyClient로 감싸라 ########
 
+
 @DependencyClient
 struct SpeechClient {
     // 권한 상태
@@ -40,6 +41,14 @@ struct SpeechClient {
     // 음성인식 스트림을 시작
     var startTask: @Sendable (_ request: UncheckedSendable<SFSpeechAudioBufferRecognitionRequest>) async ->
     AsyncThrowingStream<SpeechRecognitionResult, Error> = { _ in .finished() }
+}
+
+// @Dependency(\. ~ 로 값을 악세스 할수 있도록 함
+extension DependencyValues {
+    var speechClient: SpeechClient {
+        get { self[SpeechClient.self] }
+        set { self[SpeechClient.self] = newValue }
+    }
 }
 
 extension SpeechClient: DependencyKey {

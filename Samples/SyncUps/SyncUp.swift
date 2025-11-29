@@ -15,7 +15,7 @@ struct SyncUpFeature {
     enum Path {
         case detail(SyncUpDetail)
         case meeting(Meeting, syncUp: SyncUp)
-        case record
+        case record(RecordMeeting)
     }
     
     @ObservableState
@@ -37,12 +37,14 @@ struct SyncUpFeature {
         Reduce { state, action in
             switch action {
                 
-            // detailView에서 델레게이트 액션을 받았을 때
-            case let .path(.element(_, action: .detail(delegateAction))):
+            // detail의 Action을 여기에서 실행가능
+            case let .path(.element(_, action: .detail(.delegate(delegateAction)))):
+                switch delegateAction {
+                case let .startMeeting(sharedSyncUp):
+                    state.path.append(.record(RecordMeeting.State(syncUp: sharedSyncUp)) )
+                }
                 return .none
-                
             case .path:
-                print("path!!")
                 return .none
             case .syncUpsList:
                 return .none
@@ -66,8 +68,8 @@ struct SyncUpView: View {
                 SyncUpDetailView(store: store)
             case .meeting:
                 Text("MeetView")
-            case .record:
-                Text("RecordView")
+            case let .record(store):
+                RecordMeetingView(store: store)
             }
         }
     }

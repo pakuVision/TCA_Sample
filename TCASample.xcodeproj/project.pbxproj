@@ -14,6 +14,8 @@
 		FA2B5CA92EB85D8A006CCAB8 /* TCASampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA32EB85D8A006CCAB8 /* TCASampleApp.swift */; };
 		FA2B5CAA2EB85D8A006CCAB8 /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA42EB85D8A006CCAB8 /* WeatherClient.swift */; };
 		FA2B5CB92EB862C6006CCAB8 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CB82EB862B5006CCAB8 /* SearchFeature.swift */; };
+		FA512AA62ED5B9FD0060B995 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512AA52ED5B9EE0060B995 /* Meeting.swift */; };
+		FA512AA82ED5E5E10060B995 /* RecordMeeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512AA72ED5E5DC0060B995 /* RecordMeeting.swift */; };
 		FAB31A752EBF36D500837A99 /* Todos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB31A742EBF36D100837A99 /* Todos.swift */; };
 		FAB31A7A2EBF385400837A99 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB31A792EBF385100837A99 /* Todo.swift */; };
 		FAB31A7F2EBF41A300837A99 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FAB31A7E2EBF41A300837A99 /* ComposableArchitecture */; };
@@ -49,6 +51,8 @@
 		FA2B5CA42EB85D8A006CCAB8 /* WeatherClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		FA2B5CB82EB862B5006CCAB8 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		FA2E5B6C2EB453700094C2AC /* TCASample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCASample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA512AA52ED5B9EE0060B995 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
+		FA512AA72ED5E5DC0060B995 /* RecordMeeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMeeting.swift; sourceTree = "<group>"; };
 		FAB31A742EBF36D100837A99 /* Todos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todos.swift; sourceTree = "<group>"; };
 		FAB31A792EBF385100837A99 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		FAB31A842EC0904200837A99 /* TCASampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCASampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +158,8 @@
 				FAEE47EA2ED1DE9300FBD3E0 /* SyncUpForm.swift */,
 				FACB7FEB2EC9BE0600457807 /* SyncUpDetail.swift */,
 				FACB7FED2EC9BF0C00457807 /* Models.swift */,
+				FA512AA52ED5B9EE0060B995 /* Meeting.swift */,
+				FA512AA72ED5E5DC0060B995 /* RecordMeeting.swift */,
 			);
 			path = SyncUps;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB31A752EBF36D500837A99 /* Todos.swift in Sources */,
+				FA512AA62ED5B9FD0060B995 /* Meeting.swift in Sources */,
 				FAEE47EB2ED1DE9E00FBD3E0 /* SyncUpForm.swift in Sources */,
 				FACB7FEA2EC9B5E300457807 /* SyncUpsList.swift in Sources */,
 				FAEE47EE2ED4569900FBD3E0 /* SpeechRecognizer.swift in Sources */,
@@ -305,6 +312,7 @@
 				FAB31A7A2EBF385400837A99 /* Todo.swift in Sources */,
 				FA2B5CB92EB862C6006CCAB8 /* SearchFeature.swift in Sources */,
 				FACB7FFC2ECB682800457807 /* Settings.swift in Sources */,
+				FA512AA82ED5E5E10060B995 /* RecordMeeting.swift in Sources */,
 				FA2B5CA82EB85D8A006CCAB8 /* SearchView.swift in Sources */,
 				FACB7FFA2EC9F0FE00457807 /* Detail.swift in Sources */,
 				FA2B5CA92EB85D8A006CCAB8 /* TCASampleApp.swift in Sources */,
@@ -465,6 +473,7 @@
 				DEVELOPMENT_TEAM = WXXH24N45W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "To transcribe meeting notes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -499,6 +508,7 @@
 				DEVELOPMENT_TEAM = WXXH24N45W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "To transcribe meeting notes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

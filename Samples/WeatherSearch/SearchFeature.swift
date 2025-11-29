@@ -75,7 +75,7 @@ struct SearchFeature {
                         try await self.weatherClient.search(query: query)
                     }))
                 }
-                .cancellable(id: CancelID.search, cancelInFlight: true)
+                //.cancellable(id: CancelID.search, cancelInFlight: true)
                 
             case let .searchResponse(.success(response)):
                 state.isRequestingSearch = false
@@ -103,7 +103,7 @@ struct SearchFeature {
                     )
                 }
                 // cancelInFlight: 진행중인api를 캔슬
-                .cancellable(id: CancelID.forecast, cancelInFlight: true)
+                //.cancellable(id: CancelID.forecast, cancelInFlight: true)
                 
             case  let .forecastResponse(id, .success(forecast)):
                 print("successed forecastResponse")

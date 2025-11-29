@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import SwiftUI
+@preconcurrency import Speech
 
 @Reducer
 struct SyncUpDetail {
@@ -32,10 +33,18 @@ struct SyncUpDetail {
     enum Action {
         case destination(PresentationAction<Destination.Action>)
         case startMeetingButtonTapped
+        case delegate(Delegate)
         case cancelEditButtonTapped
         case deleteButtonTapped
         case editButtonTapped
     }
+    
+    @CasePathable
+    enum Delegate {
+        case startMeeting(Shared<SyncUp>)
+    }
+    
+    @Dependency(\.speechClient.authorizationStatus) var authorizationStatus
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
@@ -43,12 +52,29 @@ struct SyncUpDetail {
             case .destination:
                 return .none
             case .startMeetingButtonTapped:
-                return .none
+                print("startMeetingButtonTapped")
+                switch authorizationStatus() {
+                case .authorized, .notDetermined:
+                    return .send(.delegate(Delegate.startMeeting(state.$syncUp)))
+                case .denied:
+                    print("denied")
+                    //state.destination = .aleat!
+                    return .none
+                case .restricted:
+                    print("restricted")
+                    //state.destination = .alrt
+                    return .none
+                    
+                @unknown default:
+                    return .none
+                }
             case .cancelEditButtonTapped:
                 return .none
             case .editButtonTapped:
                 return .none
             case .deleteButtonTapped:
+                return .none
+            case .delegate:
                 return .none
             }
         }
