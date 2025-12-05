@@ -66,8 +66,8 @@ struct SyncUpView: View {
             switch store.case {
             case let .detail(store):
                 SyncUpDetailView(store: store)
-            case .meeting:
-                Text("MeetView")
+            case let .meeting(meeting, syncUp: syncUp):
+                MeetingView(meeting: meeting, syncUp: syncUp)
             case let .record(store):
                 RecordMeetingView(store: store)
             }

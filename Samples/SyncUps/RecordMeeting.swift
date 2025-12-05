@@ -56,7 +56,14 @@ struct RecordMeeting {
                 }
             case .alert(.presented(.confirmSave)):
                 print("alert confirmSave!!")
-                return .none
+                
+                state.$syncUp.withLock { syncUp in
+                    syncUp.insert(transcript: state.transcript)
+                }
+                
+                return .run { _ in
+                    await dismiss()
+                }
             case .alert:
                 return .none
             case .endMeetingButtonTapped:
@@ -74,18 +81,19 @@ struct RecordMeeting {
                     let authrization = await speechClient.authorizationStatus() == .notDetermined
                     ? speechClient.requestAuthorization()
                     : speechClient.authorizationStatus()
-                    print("authrization!: \(authrization)")
-//                    await withDiscardingTaskGroup { group in
-//                        if authrization == .authorized {
-//                            group.addTask {
-//                                // Do start speech Recognition
-//                            }
-//                        }
-//                        
-//                        group.addTask {
-//                            
-//                        }
-//                    }
+                    print("authrization status!: \(authrization)")
+                    
+                    await withDiscardingTaskGroup { group in
+                        if authrization == .authorized {
+                            group.addTask {
+                                await startSpeechRecognition(send: send)
+                            }
+                        }
+                        
+                        group.addTask {
+                            
+                        }
+                    }
                 }
 
             case .timerTick:
@@ -108,11 +116,61 @@ struct RecordMeeting {
     }
     
     private func startSpeechRecognition(send: Send<Action>) async {
+        print("startSpeechRecognition!!")
         do {
-
+            let speechTask = await speechClient.startTask(request: UncheckedSendable(SFSpeechAudioBufferRecognitionRequest()))
             
+            for try await result in speechTask {
+                print("speechTask result!!: \(result)")
+                 send(.speechResult(result))
+            }
         } catch {
+             send(.speechFailure)
+        }
+    }
+}
+
+struct RecordMeetingView: View {
+    @Bindable var store: StoreOf<RecordMeeting>
+    
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 16)
+                .fill(store.syncUp.theme.mainColor)
             
+            VStack {
+                MeetingHeaderView(
+                    secondElapsed: store.secondElapsed,
+                    durationRemaining: store.durationRemaining,
+                    theme: .bubblegum
+                )
+                
+                MeetingTimerView(
+                    syncUp: store.syncUp,
+                    speakerIndex: store.speakerIndex
+                )
+                
+                MeetingFooterView(
+                    syncUp: store.syncUp,
+                    nextButtonTapped: { store.send(.nextButtonTapped) },
+                    speakerIndex: store.speakerIndex
+                )
+            }
+        }
+        .padding()
+        .foregroundStyle(store.syncUp.theme.accentColor)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(id: "left", placement: .cancellationAction) {
+                Button("End meeting") {
+                    store.send(.endMeetingButtonTapped)
+                }
+            }
+        }
+        .navigationBarBackButtonHidden()
+        .alert($store.scope(state: \.alert, action: \.alert))
+        .task {
+            await store.send(.onTask).finish()
         }
     }
 }
@@ -162,52 +220,6 @@ extension AlertState where Action == RecordMeeting.Action.Alert {
 }
 
 
-struct RecordMeetingView: View {
-    @Bindable var store: StoreOf<RecordMeeting>
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(store.syncUp.theme.mainColor)
-            
-            VStack {
-                MeetingHeaderView(
-                    secondElapsed: store.secondElapsed,
-                    durationRemaining: store.durationRemaining,
-                    theme: .bubblegum
-                )
-                
-                MeetingTimerView(
-                    syncUp: store.syncUp,
-                    speakerIndex: store.speakerIndex
-                )
-                
-                MeetingFooterView(
-                    syncUp: store.syncUp,
-                    nextButtonTapped: { store.send(.nextButtonTapped) },
-                    speakerIndex: store.speakerIndex
-                )
-            }
-        }
-        .padding()
-        .foregroundStyle(store.syncUp.theme.accentColor)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(id: "left", placement: .cancellationAction) {
-                Button("End meeting") {
-                    store.send(.endMeetingButtonTapped)
-                }
-            }
-        }
-        .navigationBarBackButtonHidden()
-        .alert($store.scope(state: \.alert, action: \.alert))
-        .task {
-            await store.send(.onTask).finish()
-        }
-    }
-}
-
-
 struct MeetingTimerView: View {
     let syncUp: SyncUp
     let speakerIndex: Int
@@ -244,6 +256,7 @@ struct MeetingTimerView: View {
                     }
                 }
             }
+            .padding()
     }
 }
 
@@ -321,7 +334,28 @@ struct MeetingHeaderView: View {
         VStack {
             ProgressView(value: progress)
                 .progressViewStyle(MeetingProgressViewStyle(theme: theme))
+                .frame(height: 20)
+            
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("Time Elapsed")
+                        .font(.caption)
+                    
+                    Label(
+                        Duration.seconds(secondElapsed).formatted(.units()),
+                        systemImage: "hourglass.bottomhalf.fill"
+                    )
+                }
+                Spacer()
+                VStack(alignment: .trailing) {
+                    Text("Time Remaining")
+                        .font(.caption)
+                    Label(durationRemaining.formatted(.units()), systemImage: "hourglass.bottomhalf.fill")
+                        .font(.body.monospacedDigit())
+                }
+            }
         }
+        .padding([.top, .horizontal])
     }
 }
 
@@ -331,12 +365,23 @@ struct MeetingProgressViewStyle: ProgressViewStyle {
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(theme.mainColor.opacity(0.5))
+                .fill(theme.accentColor)
             
             ProgressView(configuration)
                 .tint(theme.mainColor)
                 .frame(height: 12)
                 .padding(.horizontal)
         }
+    }
+}
+
+extension SyncUp {
+    fileprivate mutating func insert(transcript: String) {
+        
+        @Dependency(\.date.now) var now
+        @Dependency(\.uuid) var uuid
+        
+        let newMeeting = Meeting(id: uuid(), date: now, transcript: transcript)
+        meetings.insert(newMeeting, at: 0)
     }
 }
