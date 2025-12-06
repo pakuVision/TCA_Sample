@@ -73,7 +73,16 @@ struct RecordMeeting {
                 state.alert = .endMeeting(isDiscardable: true)
                 return .none
             case .nextButtonTapped:
-                print("nextButtonTapped")
+                // 다음사람으로 레코딩 시작
+                // 다음 사람이 없으면 얼럿을 표시
+                guard state.speakerIndex < state.syncUp.attendees.count - 1 else {
+                    state.alert = .endMeeting(isDiscardable: true)
+                    return .none
+                }
+                
+                state.speakerIndex += 1
+                let durationPerAttendee: Duration = state.syncUp.duration / state.syncUp.attendees.count
+                state.secondElapsed = state.speakerIndex * Int(durationPerAttendee.components.seconds)
                 return .none
             case .onTask:
                 print("onTask")
@@ -307,7 +316,7 @@ struct MeetingFooterView: View {
                 Button(action: nextButtonTapped) {
                     HStack {
                         Image(systemName: "forward.fill")
-                        Text("nextButton")
+                        Text("Next person")
                     }
                 }
             }

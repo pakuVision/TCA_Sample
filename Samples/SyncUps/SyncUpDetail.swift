@@ -19,6 +19,8 @@ struct SyncUpDetail {
         
         enum Alert {
             case confirmDeletion
+            case continueWithoutRecording
+            case openSettings
         }
     }
     
@@ -35,6 +37,7 @@ struct SyncUpDetail {
         case startMeetingButtonTapped
         case delegate(Delegate)
         case cancelEditButtonTapped
+        case deleteMeetings(_ indexSet: IndexSet)
         case deleteButtonTapped
         case editButtonTapped
         case doneEditingButtonTapped
@@ -46,6 +49,7 @@ struct SyncUpDetail {
     }
     
     @Dependency(\.dismiss) var dismiss
+    @Dependency(\.openSettings) var openSettings
     @Dependency(\.speechClient.authorizationStatus) var authorizationStatus
     
     var body: some Reducer<State, Action> {
@@ -58,7 +62,7 @@ struct SyncUpDetail {
                     return .send(.delegate(Delegate.startMeeting(state.$syncUp)))
                 case .denied:
                     print("denied")
-                    //state.destination = .aleat!
+                    state.destination = .alert(.speechRecognitionDenied)
                     return .none
                 case .restricted:
                     print("restricted")
@@ -68,6 +72,11 @@ struct SyncUpDetail {
                 @unknown default:
                     return .none
                 }
+            case let .deleteMeetings(indexSet):
+                state.$syncUp.withLock { syncUp in
+                    syncUp.meetings.remove(atOffsets: indexSet)
+                }
+                return .none
             case .cancelEditButtonTapped:
                 return .none
             case .editButtonTapped:
@@ -85,6 +94,12 @@ struct SyncUpDetail {
                 return .none
             case let .destination(.presented(.alert(alertAction))):
                 switch alertAction {
+                case .openSettings:
+                    return .run { send in
+                        await openSettings()
+                    }
+                case .continueWithoutRecording:
+                    return .send(.delegate(.startMeeting(state.$syncUp)))
                 case .confirmDeletion:
                     @Shared(.syncUps) var syncUps
                     $syncUps.withLock { syncUps in
@@ -156,6 +171,12 @@ struct SyncUpDetailView: View {
                     .font(.headline)
                     .foregroundStyle(Color.accentColor)
             }
+            
+            HStack {
+                Label("Length", systemImage: "clock")
+                Spacer()
+                Text(store.syncUp.duration.formatted(.units()))
+            }
             HStack {
                 Label("Theme", systemImage: "paintpalette")
                 Spacer()
@@ -183,6 +204,9 @@ struct SyncUpDetailView: View {
                         Text(meeting.date, style: .time)
                     }
                 }
+            }
+            .onDelete { indexSet in
+                store.send(.deleteMeetings(indexSet))
             }
         } header: {
             Text("Past meeting")
@@ -219,6 +243,22 @@ extension AlertState where Action == SyncUpDetail.Destination.Alert {
         }
         ButtonState(role: .cancel) {
             TextState("Nevermind")
+        }
+    }
+    
+    static let speechRecognitionDenied = AlertState {
+        TextState("Speech recognition denied")
+    } actions: {
+        ButtonState(action: .continueWithoutRecording) {
+            TextState("Continue without recorning")
+        }
+        
+        ButtonState(action: .openSettings) {
+            TextState("Open settings")
+        }
+        
+        ButtonState(role: .cancel) {
+            TextState("Cancel")
         }
     }
 }

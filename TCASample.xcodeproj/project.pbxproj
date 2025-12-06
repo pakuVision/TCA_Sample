@@ -14,6 +14,7 @@
 		FA2B5CA92EB85D8A006CCAB8 /* TCASampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA32EB85D8A006CCAB8 /* TCASampleApp.swift */; };
 		FA2B5CAA2EB85D8A006CCAB8 /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA42EB85D8A006CCAB8 /* WeatherClient.swift */; };
 		FA2B5CB92EB862C6006CCAB8 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CB82EB862B5006CCAB8 /* SearchFeature.swift */; };
+		FA33012A2EE40C4B0059421A /* OpenSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3301292EE40C450059421A /* OpenSettings.swift */; };
 		FA512AA62ED5B9FD0060B995 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512AA52ED5B9EE0060B995 /* Meeting.swift */; };
 		FA512AA82ED5E5E10060B995 /* RecordMeeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512AA72ED5E5DC0060B995 /* RecordMeeting.swift */; };
 		FAB31A752EBF36D500837A99 /* Todos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB31A742EBF36D100837A99 /* Todos.swift */; };
@@ -51,6 +52,7 @@
 		FA2B5CA42EB85D8A006CCAB8 /* WeatherClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		FA2B5CB82EB862B5006CCAB8 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		FA2E5B6C2EB453700094C2AC /* TCASample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCASample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3301292EE40C450059421A /* OpenSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSettings.swift; sourceTree = "<group>"; };
 		FA512AA52ED5B9EE0060B995 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		FA512AA72ED5E5DC0060B995 /* RecordMeeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMeeting.swift; sourceTree = "<group>"; };
 		FAB31A742EBF36D100837A99 /* Todos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todos.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		FAEE47EC2ED4568400FBD3E0 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				FA3301292EE40C450059421A /* OpenSettings.swift */,
 				FAEE47ED2ED4569300FBD3E0 /* SpeechRecognizer.swift */,
 			);
 			path = Dependencies;
@@ -311,6 +314,7 @@
 				FACB7FEE2EC9BF1000457807 /* Models.swift in Sources */,
 				FAB31A7A2EBF385400837A99 /* Todo.swift in Sources */,
 				FA2B5CB92EB862C6006CCAB8 /* SearchFeature.swift in Sources */,
+				FA33012A2EE40C4B0059421A /* OpenSettings.swift in Sources */,
 				FACB7FFC2ECB682800457807 /* Settings.swift in Sources */,
 				FA512AA82ED5E5E10060B995 /* RecordMeeting.swift in Sources */,
 				FA2B5CA82EB85D8A006CCAB8 /* SearchView.swift in Sources */,
