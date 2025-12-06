@@ -85,3 +85,35 @@ extension Color {
         return luminance < 0.5   // 0.5 기준으로 어두우면 white를 선택
     }
 }
+
+// Mock 용
+extension SyncUp {
+    static let mock = Self(
+        id: SyncUp.ID(),
+        title: "Design",
+        duration: .seconds(60),
+        attendees: [
+          Attendee(id: Attendee.ID(), name: "Blob"),
+          Attendee(id: Attendee.ID(), name: "Blob Jr"),
+          Attendee(id: Attendee.ID(), name: "Blob Sr"),
+          Attendee(id: Attendee.ID(), name: "Blob Esq"),
+          Attendee(id: Attendee.ID(), name: "Blob III"),
+          Attendee(id: Attendee.ID(), name: "Blob I"),
+        ],
+        meetings: [
+            Meeting(
+                id: Meeting.ID(),
+                date: Date().addingTimeInterval(-60 * 60 * 24 * 7),
+                transcript: """
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud \
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure \
+                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \
+                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt \
+                  mollit anim id est laborum.
+                  """
+            )
+        ],
+        theme: .orange
+    )
+}
