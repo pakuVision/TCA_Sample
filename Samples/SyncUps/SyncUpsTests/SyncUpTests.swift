@@ -11,6 +11,7 @@ import Testing
 
 @testable import TCASample
 internal import SwiftUI
+internal import Speech
 
 // mainActor == 무조건 단일 스레드 실행이라 오해하지만, 틀리다.
 // 이것은 일관된 보호를 보장하지만 항상 한 스레드에서 직렬 실행된다 라는 보장은 없다.
@@ -29,7 +30,7 @@ struct SyncUpTests {
     }
     
     @Test
-    func testDetailEdit() async throws {
+    func detailEdit() async throws {
         let syncUp = SyncUp.mock
         @Shared(.syncUps) var syncUps = [syncUp]
         
@@ -101,7 +102,7 @@ struct SyncUpTests {
             
             if case .detail(var detailState) = state.path[id: 0] {
                 
-                // destination == nil이 되어서 dismiss되야됨
+                // destination == nil이 되어서 sheet이 dismiss
                 detailState.destination = nil
                 
                 // SharedState(syncUp)의 수정이 일어나야 함
@@ -122,5 +123,74 @@ struct SyncUpTests {
         // 이 모든것을 검사하요
         // 테스트를 완전히 끝내도 좋다라고 보증하는 역할
         .finish()
+    }
+    
+    @Test
+    func delete() async throws {
+        let syncUp = SyncUp.mock
+        
+        @Shared(.syncUps) var syncUps = [syncUp]
+        let store = TestStore(initialState: SyncUpFeature.State()) {
+            SyncUpFeature()
+        }
+        
+        // Shared() 를 감싸는 이유는  SharedStorage안의 실제 데이터 Entry를 직접 다루기 위해서 이다.
+        // 그래야 값을 Set할 수 있게 되는 것.
+        let sharedSyncUp = try #require(Shared($syncUps[id: syncUp.id]))
+        
+        //.send(KeyPath<Case<SyncUpFeature.Action>, Case<Value>>, value: Value)
+
+        // 1. path .detail로 화면 천이되었고 sharedSyncup값이 전달된 상태를 체크
+        await store.send(\.path.push, (id: 0, .detail(SyncUpDetail.State(syncUp: sharedSyncUp)))) { state in
+            state.path[id: 0] = .detail(SyncUpDetail.State(syncUp: sharedSyncUp))
+        }
+        
+        // 2. 삭제버튼이 눌리고 얼럿표시 상태를 체크
+        await store.send(\.path[id: 0].detail.deleteButtonTapped) { state in
+            
+            // detailState를 취득해서
+            if case .detail(var detailState) = state.path[id: 0] {
+                // destination에는 .alert .deleteSyncUp의 값을 넣음
+                detailState.destination = .alert(.deleteSyncUp)
+                
+                // 반영
+                state.path[id: 0] = .detail(detailState)
+            }
+            
+            // 위와 같은 처리
+//            state.path[id: 0].modify(\.detail) { yield in
+//                yield.destination = .alert(.deleteSyncUp)
+//            }
+        }
+        
+        // 3. 얼럿뷰의 ok버튼을 누른 뒤의 상태를 구현
+        await store.send(\.path[id: 0].detail.destination.alert, .confirmDeletion) { state in
+            
+            if case .detail(var detailState) = state.path[id: 0] {
+                
+                detailState.destination = nil
+                
+                state.path[id: 0] = .detail(detailState)
+                state.syncUpsList.$syncUps.withLock { $0 = [] }
+            }
+            
+//            state.path[id: 0].modify(\.detail) {
+//                $0.destination = nil
+//            }
+//            state.syncUpsList.$syncUps.withLock { $0 = [] }
+
+        }
+        
+        // ⚠️⚠️⚠️
+        // push를 dismiss할때는 이것까지 확인해야 함
+        await store.receive(\.path.popFrom) {
+          // state.path에는 빈상태이어야 함
+          $0.path = StackState()
+        }
+    }
+    
+    @Test
+    func recording() async {
+       // recording 로직을 완전히 이해한 다음에 테스트를 구현하기
     }
 }
