@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import Speech
 import SwiftUI
-
+import Tagged
 @Reducer
 struct RecordMeeting {
     
@@ -390,7 +390,7 @@ extension SyncUp {
         @Dependency(\.date.now) var now
         @Dependency(\.uuid) var uuid
         
-        let newMeeting = Meeting(id: uuid(), date: now, transcript: transcript)
+        let newMeeting = Meeting(id: Meeting.ID(uuid()), date: now, transcript: transcript)
         meetings.insert(newMeeting, at: 0)
     }
 }

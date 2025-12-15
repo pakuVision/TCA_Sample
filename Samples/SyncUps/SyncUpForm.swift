@@ -8,6 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 import SwiftNavigation
+import Tagged
 
 @Reducer
 struct SyncUpForm {
@@ -25,13 +26,13 @@ struct SyncUpForm {
                 //DependencyValues안에 정의된 특정 의존성 키를 "참조하여" 가져오는 문법이며, (keyPath문법)
                 // 테스트나 프리뷰. 실행 환경에서.  그 값을 밖에서 원하는 값으로 주입할 수 있게 하는 기능
                 @Dependency(\.uuid) var uuid
-                self.syncUp.attendees.append(Attendee(id: uuid()))
+                self.syncUp.attendees.append(Attendee(id: Attendee.ID(uuid())))
             }
         }
         
         nonisolated
         enum FocusField: Hashable, Sendable {
-            case attendee(UUID)
+            case attendee(Attendee.ID)
             case title
         }
     }
@@ -51,11 +52,11 @@ struct SyncUpForm {
             switch action {
                 
             case .addAttendeeButtonTapped:
-                let uuid = self.uuid()
-                let newAttendee = Attendee(id: uuid)
+                let id = Attendee.ID(uuid())
+                let newAttendee = Attendee(id: id)
                 state.syncUp.attendees.append(newAttendee)
                 // 追加したAttendeeを focusさせる
-                state.focus = .attendee(uuid)
+                state.focus = .attendee(id)
                 return .none
                 
             case .binding:

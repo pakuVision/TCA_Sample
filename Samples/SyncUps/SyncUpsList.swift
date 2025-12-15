@@ -44,7 +44,7 @@ struct SyncUpsList {
             switch action {
             case .addSyncUpButtonTapped:
                 state.destination = .add(
-                    SyncUpForm.State(syncUp: SyncUp(id: uuid(), attendees: [], meetings: []))
+                    SyncUpForm.State(syncUp: SyncUp(id: SyncUp.ID(uuid()), attendees: [], meetings: []))
                 )
                 return .none
             case let .onDelete(indexSet):
@@ -53,8 +53,15 @@ struct SyncUpsList {
                 
             case .confirmAddSyncUpButtonTapped:
                 guard case let .some(.add(editState)) = state.destination else { return .none }
-                let newSyncUp = editState.syncUp
+                var newSyncUp = editState.syncUp
                 
+                newSyncUp.attendees.removeAll { attendee in
+                    attendee.name.allSatisfy(\.isWhitespace)
+                }
+                
+                if newSyncUp.attendees.isEmpty {
+                    newSyncUp.attendees.append(Attendee(id: Attendee.ID(uuid())))
+                }
                 
                 state.$syncUps.withLock { _ = $0.append(newSyncUp) }
                 
