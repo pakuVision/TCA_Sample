@@ -66,8 +66,7 @@ struct SyncUpDetail {
                     state.destination = .alert(.speechRecognitionDenied)
                     return .none
                 case .restricted:
-                    print("restricted")
-                    //state.destination = .alrt
+                    state.destination = .alert(.speechRecognitionRestricted)
                     return .none
                     
                 @unknown default:
@@ -261,5 +260,22 @@ extension AlertState where Action == SyncUpDetail.Destination.Alert {
         ButtonState(role: .cancel) {
             TextState("Cancel")
         }
+    }
+    
+    static let speechRecognitionRestricted = Self {
+      TextState("Speech recognition restricted")
+    } actions: {
+      ButtonState(action: .continueWithoutRecording) {
+        TextState("Continue without recording")
+      }
+      ButtonState(role: .cancel) {
+        TextState("Cancel")
+      }
+    } message: {
+      TextState(
+        """
+        Your device does not support speech recognition and so your meeting will not be recorded.
+        """
+      )
     }
 }

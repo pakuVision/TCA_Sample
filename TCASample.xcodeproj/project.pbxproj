@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA28758B2EED53B5009CB091 /* SyncUpsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */; };
+		FA28758D2EF01767009CB091 /* SyncUpDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */; };
 		FA2B5CA52EB85D8A006CCAB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA2B5C9F2EB85D8A006CCAB8 /* Assets.xcassets */; };
 		FA2B5CA62EB85D8A006CCAB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA02EB85D8A006CCAB8 /* ContentView.swift */; };
 		FA2B5CA72EB85D8A006CCAB8 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA12EB85D8A006CCAB8 /* CounterView.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpsListTests.swift; sourceTree = "<group>"; };
+		FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpDetailTests.swift; sourceTree = "<group>"; };
 		FA2B5C9F2EB85D8A006CCAB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA2B5CA02EB85D8A006CCAB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FA2B5CA12EB85D8A006CCAB8 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				FA3301352EE435A30059421A /* SyncUpTests.swift */,
 				FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */,
+				FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */,
 			);
 			path = SyncUpsTests;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			files = (
 				FACB7FE52EC9886B00457807 /* TodosTests.swift in Sources */,
 				FA28758B2EED53B5009CB091 /* SyncUpsListTests.swift in Sources */,
+				FA28758D2EF01767009CB091 /* SyncUpDetailTests.swift in Sources */,
 				FA3301372EE435A30059421A /* SyncUpTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
