@@ -34,6 +34,7 @@
 		FACB7FFC2ECB682800457807 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB7FFB2ECB682500457807 /* Settings.swift */; };
 		FAEE47EB2ED1DE9E00FBD3E0 /* SyncUpForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE47EA2ED1DE9300FBD3E0 /* SyncUpForm.swift */; };
 		FAEE47EE2ED4569900FBD3E0 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE47ED2ED4569300FBD3E0 /* SpeechRecognizer.swift */; };
+		FAFA30352EF29301007550A7 /* SyncUpFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA30342EF29301007550A7 /* SyncUpFormTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FACB7FFB2ECB682500457807 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FAEE47EA2ED1DE9300FBD3E0 /* SyncUpForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpForm.swift; sourceTree = "<group>"; };
 		FAEE47ED2ED4569300FBD3E0 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		FAFA30342EF29301007550A7 /* SyncUpFormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpFormTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				FA3301352EE435A30059421A /* SyncUpTests.swift */,
 				FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */,
 				FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */,
+				FAFA30342EF29301007550A7 /* SyncUpFormTests.swift */,
 			);
 			path = SyncUpsTests;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				FACB7FE52EC9886B00457807 /* TodosTests.swift in Sources */,
 				FA28758B2EED53B5009CB091 /* SyncUpsListTests.swift in Sources */,
 				FA28758D2EF01767009CB091 /* SyncUpDetailTests.swift in Sources */,
+				FAFA30352EF29301007550A7 /* SyncUpFormTests.swift in Sources */,
 				FA3301372EE435A30059421A /* SyncUpTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
