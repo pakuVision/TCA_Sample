@@ -32,13 +32,24 @@ struct TCASampleApp: App {
 //        }
 //    }
     
-    // MARK: SyncUps -----------------------------------------
-    static let store = Store(initialState: SyncUpFeature.State()) {
-        SyncUpFeature()
+    // MARK: Search -----------------------------------------
+    static let searchStore = Store(initialState: SearchFeature.State()) {
+        SearchFeature()
     }
-    var body: some Scene {
+    
+    var body: some Scene  {
         WindowGroup {
-            SyncUpView(store: Self.store)
+            SearchView(store: Self.searchStore)
         }
     }
+    
+    // MARK: SyncUps -----------------------------------------
+//    static let store = Store(initialState: SyncUpFeature.State()) {
+//        SyncUpFeature()
+//    }
+//    var body: some Scene {
+//        WindowGroup {
+//            SyncUpView(store: Self.store)
+//        }
+//    }
 }
