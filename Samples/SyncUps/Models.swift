@@ -17,6 +17,12 @@ struct SyncUp: Equatable, Identifiable, Codable {
     var attendees: IdentifiedArrayOf<Attendee> = []
     var meetings: IdentifiedArrayOf<Meeting> = []
     var theme: Theme = .bubblegum
+    
+    // 회의시간분 (duration : 60 * 5 )
+    // 참석자당 duration
+    var durationPerAttendee: Duration {
+        duration / attendees.count
+    }
 }
 
 struct Attendee: Equatable, Identifiable, Codable {

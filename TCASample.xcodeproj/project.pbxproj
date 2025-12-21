@@ -12,14 +12,12 @@
 		FA2B5CA52EB85D8A006CCAB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA2B5C9F2EB85D8A006CCAB8 /* Assets.xcassets */; };
 		FA2B5CA62EB85D8A006CCAB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA02EB85D8A006CCAB8 /* ContentView.swift */; };
 		FA2B5CA72EB85D8A006CCAB8 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA12EB85D8A006CCAB8 /* CounterView.swift */; };
-		FA2B5CA82EB85D8A006CCAB8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA22EB85D8A006CCAB8 /* SearchView.swift */; };
 		FA2B5CA92EB85D8A006CCAB8 /* TCASampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA32EB85D8A006CCAB8 /* TCASampleApp.swift */; };
-		FA2B5CAA2EB85D8A006CCAB8 /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CA42EB85D8A006CCAB8 /* WeatherClient.swift */; };
-		FA2B5CB92EB862C6006CCAB8 /* SearchFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5CB82EB862B5006CCAB8 /* SearchFeature.swift */; };
 		FA33012A2EE40C4B0059421A /* OpenSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3301292EE40C450059421A /* OpenSettings.swift */; };
 		FA3301372EE435A30059421A /* SyncUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3301352EE435A30059421A /* SyncUpTests.swift */; };
 		FA512AA62ED5B9FD0060B995 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512AA52ED5B9EE0060B995 /* Meeting.swift */; };
 		FA512AA82ED5E5E10060B995 /* RecordMeeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA512AA72ED5E5DC0060B995 /* RecordMeeting.swift */; };
+		FA7403432EF3761C00B37EA8 /* RecordMeetingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7403422EF3761C00B37EA8 /* RecordMeetingTests.swift */; };
 		FAB31A752EBF36D500837A99 /* Todos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB31A742EBF36D100837A99 /* Todos.swift */; };
 		FAB31A7A2EBF385400837A99 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB31A792EBF385100837A99 /* Todo.swift */; };
 		FAB31A7F2EBF41A300837A99 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FAB31A7E2EBF41A300837A99 /* ComposableArchitecture */; };
@@ -53,15 +51,13 @@
 		FA2B5C9F2EB85D8A006CCAB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA2B5CA02EB85D8A006CCAB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FA2B5CA12EB85D8A006CCAB8 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
-		FA2B5CA22EB85D8A006CCAB8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FA2B5CA32EB85D8A006CCAB8 /* TCASampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCASampleApp.swift; sourceTree = "<group>"; };
-		FA2B5CA42EB85D8A006CCAB8 /* WeatherClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
-		FA2B5CB82EB862B5006CCAB8 /* SearchFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeature.swift; sourceTree = "<group>"; };
 		FA2E5B6C2EB453700094C2AC /* TCASample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCASample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3301292EE40C450059421A /* OpenSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSettings.swift; sourceTree = "<group>"; };
 		FA3301352EE435A30059421A /* SyncUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpTests.swift; sourceTree = "<group>"; };
 		FA512AA52ED5B9EE0060B995 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		FA512AA72ED5E5DC0060B995 /* RecordMeeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMeeting.swift; sourceTree = "<group>"; };
+		FA7403422EF3761C00B37EA8 /* RecordMeetingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMeetingTests.swift; sourceTree = "<group>"; };
 		FAB31A742EBF36D100837A99 /* Todos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todos.swift; sourceTree = "<group>"; };
 		FAB31A792EBF385100837A99 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		FAB31A842EC0904200837A99 /* TCASampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCASampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,9 +97,6 @@
 		FA2B5CB72EB860A4006CCAB8 /* WeatherSearch */ = {
 			isa = PBXGroup;
 			children = (
-				FA2B5CA42EB85D8A006CCAB8 /* WeatherClient.swift */,
-				FA2B5CA22EB85D8A006CCAB8 /* SearchView.swift */,
-				FA2B5CB82EB862B5006CCAB8 /* SearchFeature.swift */,
 			);
 			path = WeatherSearch;
 			sourceTree = "<group>";
@@ -135,6 +128,7 @@
 				FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */,
 				FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */,
 				FAFA30342EF29301007550A7 /* SyncUpFormTests.swift */,
+				FA7403422EF3761C00B37EA8 /* RecordMeetingTests.swift */,
 			);
 			path = SyncUpsTests;
 			sourceTree = "<group>";
@@ -333,15 +327,12 @@
 				FACB7FE82EC9B4C800457807 /* SyncUp.swift in Sources */,
 				FACB7FEE2EC9BF1000457807 /* Models.swift in Sources */,
 				FAB31A7A2EBF385400837A99 /* Todo.swift in Sources */,
-				FA2B5CB92EB862C6006CCAB8 /* SearchFeature.swift in Sources */,
 				FA33012A2EE40C4B0059421A /* OpenSettings.swift in Sources */,
 				FACB7FFC2ECB682800457807 /* Settings.swift in Sources */,
 				FA512AA82ED5E5E10060B995 /* RecordMeeting.swift in Sources */,
-				FA2B5CA82EB85D8A006CCAB8 /* SearchView.swift in Sources */,
 				FACB7FFA2EC9F0FE00457807 /* Detail.swift in Sources */,
 				FA2B5CA92EB85D8A006CCAB8 /* TCASampleApp.swift in Sources */,
 				FACB7FF82EC9EE4200457807 /* Root.swift in Sources */,
-				FA2B5CAA2EB85D8A006CCAB8 /* WeatherClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7403432EF3761C00B37EA8 /* RecordMeetingTests.swift in Sources */,
 				FACB7FE52EC9886B00457807 /* TodosTests.swift in Sources */,
 				FA28758B2EED53B5009CB091 /* SyncUpsListTests.swift in Sources */,
 				FA28758D2EF01767009CB091 /* SyncUpDetailTests.swift in Sources */,

@@ -58,7 +58,8 @@ struct RecordMeeting {
                 print("alert confirmSave!!")
                 
                 state.$syncUp.withLock { syncUp in
-                    syncUp.insert(transcript: state.transcript)
+                    // 생성된 transcript로 새로운 Meeting()을 생성해서 meetings에 insert
+                    syncUp.insertMeeting(transcript: state.transcript)
                 }
                 
                 return .run { _ in
@@ -100,12 +101,45 @@ struct RecordMeeting {
                         }
                         
                         group.addTask {
-                            
+                            await startTimer(send: send)
                         }
                     }
                 }
 
+            // 1초마다 호출됨
             case .timerTick:
+                guard state.alert == nil else { return .none }
+                
+                // 1초씩 증가시킴
+                state.secondElapsed += 1
+                
+                let secondsPerAttendee = Int(state.syncUp.durationPerAttendee.components.seconds)
+                
+                // 어떤수가 다른 수의 배수가 되는지 확인
+                // a.isMultiple(of: b)
+                // a % b == 0
+                // let total = 180  전체 3분
+                // let perPerson = 60  3명 → 60초씩
+                // total.isMultiple(of: perPerson) // true
+                
+                // 즉 참석자 수로 나눴을때 구해지는 한사람당의 시간이 되었을때
+                // 다음 참석자로 레코딩이 넘어가게 하는 부분
+                if state.secondElapsed.isMultiple(of: secondsPerAttendee) {
+                    
+                    // 경과된 시간과 총 레코딩시간일 때, transcript를 syncUp에 저장하고 dismiss()
+                    if state.secondElapsed == state.syncUp.duration.components.seconds {
+                        state.$syncUp.withLock {
+                            $0.insertMeeting(transcript: state.transcript)
+                        }
+                        
+                        // 레코딩은 끝났으므로 화면을 닫는다.
+                        return .run { _ in
+                            await dismiss()
+                        }
+                    }
+                    state.speakerIndex += 1
+                }
+
                 return .none
                 
             case let .speechResult(result):
@@ -122,6 +156,12 @@ struct RecordMeeting {
             }
         }
         .ifLet(\.$alert, action: \.alert)
+    }
+    
+    private func startTimer(send: Send<Action>) async {
+        for await _ in clock.timer(interval: .seconds(1)) {
+             send(.timerTick)
+        }
     }
     
     private func startSpeechRecognition(send: Send<Action>) async {
@@ -385,7 +425,7 @@ struct MeetingProgressViewStyle: ProgressViewStyle {
 }
 
 extension SyncUp {
-    fileprivate mutating func insert(transcript: String) {
+    fileprivate mutating func insertMeeting(transcript: String) {
         
         @Dependency(\.date.now) var now
         @Dependency(\.uuid) var uuid
