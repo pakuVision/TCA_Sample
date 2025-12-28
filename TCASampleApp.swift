@@ -33,16 +33,16 @@ struct TCASampleApp: App {
 //    }
     
     // MARK: Search -----------------------------------------
-    static let searchStore = Store(initialState: SearchFeature.State()) {
-        SearchFeature()
-    }
-    
-    var body: some Scene  {
-        WindowGroup {
-            SearchView(store: Self.searchStore)
-        }
-    }
-    
+//    static let searchStore = Store(initialState: SearchFeature.State()) {
+//        SearchFeature()
+//    }
+//    
+//    var body: some Scene  {
+//        WindowGroup {
+//            SearchView(store: Self.searchStore)
+//        }
+//    }
+//    
     // MARK: SyncUps -----------------------------------------
 //    static let store = Store(initialState: SyncUpFeature.State()) {
 //        SyncUpFeature()
@@ -52,4 +52,16 @@ struct TCASampleApp: App {
 //            SyncUpView(store: Self.store)
 //        }
 //    }
+    
+    // MARK: TicTacToe -----------------------------------------
+    // static body 이므로 이렇게 바로 레듀서값을 취득가능하다.
+    static let ticTacToeStore = Store(initialState: TicTacToe.State.login(Login.State())) {
+        TicTacToe.body
+    }
+    
+    var body: some Scene {
+        WindowGroup {
+            TicTacToeAppView(store: Self.ticTacToeStore)
+        }
+    }
 }

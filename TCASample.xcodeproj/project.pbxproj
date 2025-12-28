@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA07F3172EFAE30500B1633A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F3162EFAE30100B1633A /* LoginView.swift */; };
+		FA07F31A2EFCCD7100B1633A /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F3192EFCCD5F00B1633A /* AuthenticationClient.swift */; };
+		FA07F31C2EFCDC7200B1633A /* TwoFactorCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F31B2EFCDC6900B1633A /* TwoFactorCore.swift */; };
+		FA07F31E2F00CFA500B1633A /* TwoFactorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F31D2F00CFA100B1633A /* TwoFactorView.swift */; };
 		FA28758B2EED53B5009CB091 /* SyncUpsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */; };
 		FA28758D2EF01767009CB091 /* SyncUpDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */; };
 		FA2B5CA52EB85D8A006CCAB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA2B5C9F2EB85D8A006CCAB8 /* Assets.xcassets */; };
@@ -32,6 +36,9 @@
 		FACB7FFC2ECB682800457807 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACB7FFB2ECB682500457807 /* Settings.swift */; };
 		FAE700DB2EF7A81500334992 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE700DA2EF7A80E00334992 /* Search.swift */; };
 		FAE700DD2EF7AFC000334992 /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE700DC2EF7AFB100334992 /* WeatherClient.swift */; };
+		FAE700E02EF7E94C00334992 /* TicTacToeAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE700DF2EF7E93E00334992 /* TicTacToeAppView.swift */; };
+		FAE700E22EF7E95D00334992 /* TicTacToeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE700E12EF7E95300334992 /* TicTacToeFeature.swift */; };
+		FAE700E52EF7EA8100334992 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE700E42EF7EA7E00334992 /* Login.swift */; };
 		FAEE47EB2ED1DE9E00FBD3E0 /* SyncUpForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE47EA2ED1DE9300FBD3E0 /* SyncUpForm.swift */; };
 		FAEE47EE2ED4569900FBD3E0 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE47ED2ED4569300FBD3E0 /* SpeechRecognizer.swift */; };
 		FAFA30352EF29301007550A7 /* SyncUpFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA30342EF29301007550A7 /* SyncUpFormTests.swift */; };
@@ -48,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA07F3162EFAE30100B1633A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FA07F3192EFCCD5F00B1633A /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
+		FA07F31B2EFCDC6900B1633A /* TwoFactorCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorCore.swift; sourceTree = "<group>"; };
+		FA07F31D2F00CFA100B1633A /* TwoFactorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorView.swift; sourceTree = "<group>"; };
 		FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpsListTests.swift; sourceTree = "<group>"; };
 		FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpDetailTests.swift; sourceTree = "<group>"; };
 		FA2B5C9F2EB85D8A006CCAB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +84,9 @@
 		FACB7FFB2ECB682500457807 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FAE700DA2EF7A80E00334992 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		FAE700DC2EF7AFB100334992 /* WeatherClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
+		FAE700DF2EF7E93E00334992 /* TicTacToeAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeAppView.swift; sourceTree = "<group>"; };
+		FAE700E12EF7E95300334992 /* TicTacToeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeFeature.swift; sourceTree = "<group>"; };
+		FAE700E42EF7EA7E00334992 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		FAEE47EA2ED1DE9300FBD3E0 /* SyncUpForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpForm.swift; sourceTree = "<group>"; };
 		FAEE47ED2ED4569300FBD3E0 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		FAFA30342EF29301007550A7 /* SyncUpFormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpFormTests.swift; sourceTree = "<group>"; };
@@ -98,6 +112,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA07F3182EFCCCD100B1633A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FA07F3192EFCCD5F00B1633A /* AuthenticationClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		FA2B5CB72EB860A4006CCAB8 /* WeatherSearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +174,7 @@
 		FAB31A732EBF366100837A99 /* Samples */ = {
 			isa = PBXGroup;
 			children = (
+				FAE700DE2EF7E91F00334992 /* TicTacToe */,
 				FACB7FF42EC9EDBB00457807 /* SampleNavigationStack */,
 				FACB7FE62EC9B15200457807 /* SyncUps */,
 				FAB31A762EBF372400837A99 /* Counter */,
@@ -201,6 +224,28 @@
 				FACB7FFB2ECB682500457807 /* Settings.swift */,
 			);
 			path = SampleNavigationStack;
+			sourceTree = "<group>";
+		};
+		FAE700DE2EF7E91F00334992 /* TicTacToe */ = {
+			isa = PBXGroup;
+			children = (
+				FAE700E32EF7EA7600334992 /* Login */,
+				FAE700E12EF7E95300334992 /* TicTacToeFeature.swift */,
+				FAE700DF2EF7E93E00334992 /* TicTacToeAppView.swift */,
+			);
+			path = TicTacToe;
+			sourceTree = "<group>";
+		};
+		FAE700E32EF7EA7600334992 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA07F3182EFCCCD100B1633A /* Network */,
+				FAE700E42EF7EA7E00334992 /* Login.swift */,
+				FA07F3162EFAE30100B1633A /* LoginView.swift */,
+				FA07F31B2EFCDC6900B1633A /* TwoFactorCore.swift */,
+				FA07F31D2F00CFA100B1633A /* TwoFactorView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		FAEE47EC2ED4568400FBD3E0 /* Dependencies */ = {
@@ -322,13 +367,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA07F31E2F00CFA500B1633A /* TwoFactorView.swift in Sources */,
 				FAB31A752EBF36D500837A99 /* Todos.swift in Sources */,
 				FA512AA62ED5B9FD0060B995 /* Meeting.swift in Sources */,
+				FA07F31C2EFCDC7200B1633A /* TwoFactorCore.swift in Sources */,
 				FAEE47EB2ED1DE9E00FBD3E0 /* SyncUpForm.swift in Sources */,
 				FAE700DD2EF7AFC000334992 /* WeatherClient.swift in Sources */,
+				FA07F31A2EFCCD7100B1633A /* AuthenticationClient.swift in Sources */,
+				FA07F3172EFAE30500B1633A /* LoginView.swift in Sources */,
 				FACB7FEA2EC9B5E300457807 /* SyncUpsList.swift in Sources */,
+				FAE700E02EF7E94C00334992 /* TicTacToeAppView.swift in Sources */,
 				FAEE47EE2ED4569900FBD3E0 /* SpeechRecognizer.swift in Sources */,
 				FA2B5CA62EB85D8A006CCAB8 /* ContentView.swift in Sources */,
+				FAE700E52EF7EA8100334992 /* Login.swift in Sources */,
 				FACB7FEC2EC9BE0D00457807 /* SyncUpDetail.swift in Sources */,
 				FA2B5CA72EB85D8A006CCAB8 /* CounterView.swift in Sources */,
 				FACB7FE82EC9B4C800457807 /* SyncUp.swift in Sources */,
@@ -338,6 +389,7 @@
 				FA33012A2EE40C4B0059421A /* OpenSettings.swift in Sources */,
 				FACB7FFC2ECB682800457807 /* Settings.swift in Sources */,
 				FA512AA82ED5E5E10060B995 /* RecordMeeting.swift in Sources */,
+				FAE700E22EF7E95D00334992 /* TicTacToeFeature.swift in Sources */,
 				FACB7FFA2EC9F0FE00457807 /* Detail.swift in Sources */,
 				FA2B5CA92EB85D8A006CCAB8 /* TCASampleApp.swift in Sources */,
 				FACB7FF82EC9EE4200457807 /* Root.swift in Sources */,
