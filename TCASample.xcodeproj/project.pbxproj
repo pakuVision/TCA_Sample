@@ -11,6 +11,11 @@
 		FA07F31A2EFCCD7100B1633A /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F3192EFCCD5F00B1633A /* AuthenticationClient.swift */; };
 		FA07F31C2EFCDC7200B1633A /* TwoFactorCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F31B2EFCDC6900B1633A /* TwoFactorCore.swift */; };
 		FA07F31E2F00CFA500B1633A /* TwoFactorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F31D2F00CFA100B1633A /* TwoFactorView.swift */; };
+		FA07F3212F00DCED00B1633A /* NewGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F3202F00DCE600B1633A /* NewGame.swift */; };
+		FA07F3232F00DD7900B1633A /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F3222F00DD7500B1633A /* Game.swift */; };
+		FA07F3252F00FFD800B1633A /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F3242F00FFD400B1633A /* NewGameView.swift */; };
+		FA07F3272F0104A600B1633A /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F3262F0104A400B1633A /* GameView.swift */; };
+		FA07F3292F01070F00B1633A /* Three.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA07F3282F01070C00B1633A /* Three.swift */; };
 		FA28758B2EED53B5009CB091 /* SyncUpsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */; };
 		FA28758D2EF01767009CB091 /* SyncUpDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */; };
 		FA2B5CA52EB85D8A006CCAB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA2B5C9F2EB85D8A006CCAB8 /* Assets.xcassets */; };
@@ -59,6 +64,11 @@
 		FA07F3192EFCCD5F00B1633A /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
 		FA07F31B2EFCDC6900B1633A /* TwoFactorCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorCore.swift; sourceTree = "<group>"; };
 		FA07F31D2F00CFA100B1633A /* TwoFactorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorView.swift; sourceTree = "<group>"; };
+		FA07F3202F00DCE600B1633A /* NewGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGame.swift; sourceTree = "<group>"; };
+		FA07F3222F00DD7500B1633A /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		FA07F3242F00FFD400B1633A /* NewGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
+		FA07F3262F0104A400B1633A /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		FA07F3282F01070C00B1633A /* Three.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Three.swift; sourceTree = "<group>"; };
 		FA28758A2EED53B5009CB091 /* SyncUpsListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpsListTests.swift; sourceTree = "<group>"; };
 		FA28758C2EF01767009CB091 /* SyncUpDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpDetailTests.swift; sourceTree = "<group>"; };
 		FA2B5C9F2EB85D8A006CCAB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +128,18 @@
 				FA07F3192EFCCD5F00B1633A /* AuthenticationClient.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		FA07F31F2F00DC9700B1633A /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				FA07F3282F01070C00B1633A /* Three.swift */,
+				FA07F3222F00DD7500B1633A /* Game.swift */,
+				FA07F3262F0104A400B1633A /* GameView.swift */,
+				FA07F3202F00DCE600B1633A /* NewGame.swift */,
+				FA07F3242F00FFD400B1633A /* NewGameView.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		FA2B5CB72EB860A4006CCAB8 /* WeatherSearch */ = {
@@ -230,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				FAE700E32EF7EA7600334992 /* Login */,
+				FA07F31F2F00DC9700B1633A /* Game */,
 				FAE700E12EF7E95300334992 /* TicTacToeFeature.swift */,
 				FAE700DF2EF7E93E00334992 /* TicTacToeAppView.swift */,
 			);
@@ -369,13 +392,17 @@
 			files = (
 				FA07F31E2F00CFA500B1633A /* TwoFactorView.swift in Sources */,
 				FAB31A752EBF36D500837A99 /* Todos.swift in Sources */,
+				FA07F3292F01070F00B1633A /* Three.swift in Sources */,
+				FA07F3232F00DD7900B1633A /* Game.swift in Sources */,
 				FA512AA62ED5B9FD0060B995 /* Meeting.swift in Sources */,
+				FA07F3272F0104A600B1633A /* GameView.swift in Sources */,
 				FA07F31C2EFCDC7200B1633A /* TwoFactorCore.swift in Sources */,
 				FAEE47EB2ED1DE9E00FBD3E0 /* SyncUpForm.swift in Sources */,
 				FAE700DD2EF7AFC000334992 /* WeatherClient.swift in Sources */,
 				FA07F31A2EFCCD7100B1633A /* AuthenticationClient.swift in Sources */,
 				FA07F3172EFAE30500B1633A /* LoginView.swift in Sources */,
 				FACB7FEA2EC9B5E300457807 /* SyncUpsList.swift in Sources */,
+				FA07F3212F00DCED00B1633A /* NewGame.swift in Sources */,
 				FAE700E02EF7E94C00334992 /* TicTacToeAppView.swift in Sources */,
 				FAEE47EE2ED4569900FBD3E0 /* SpeechRecognizer.swift in Sources */,
 				FA2B5CA62EB85D8A006CCAB8 /* ContentView.swift in Sources */,
@@ -385,6 +412,7 @@
 				FACB7FE82EC9B4C800457807 /* SyncUp.swift in Sources */,
 				FAE700DB2EF7A81500334992 /* Search.swift in Sources */,
 				FACB7FEE2EC9BF1000457807 /* Models.swift in Sources */,
+				FA07F3252F00FFD800B1633A /* NewGameView.swift in Sources */,
 				FAB31A7A2EBF385400837A99 /* Todo.swift in Sources */,
 				FA33012A2EE40C4B0059421A /* OpenSettings.swift in Sources */,
 				FACB7FFC2ECB682800457807 /* Settings.swift in Sources */,

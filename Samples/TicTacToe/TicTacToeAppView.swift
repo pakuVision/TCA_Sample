@@ -17,9 +17,9 @@ struct TicTacToeAppView: View {
             NavigationStack {
                 LoginView(store: store)
             }
-        case .newGame:
+        case let .newGame(store):
             NavigationStack {
-                Text("NewGame")
+                NewGameView(store: store)
             }
         }
     }

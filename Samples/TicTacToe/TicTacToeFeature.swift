@@ -12,7 +12,7 @@ import ComposableArchitecture
 @Reducer
 public enum TicTacToe {
     case login(Login)
-    case newGame
+    case newGame(NewGame)
     
     // 주의 enum타입의 레듀서에는 static으로 선언하고 있으니.
     // TicTacToe.body 로 바로 레듀서값을 취득할 수 있다.
@@ -20,11 +20,16 @@ public enum TicTacToe {
         Reduce { state, action in
             switch action {
             case let .login(.loginResponse(.success(response))) where !response.twoFactorRequired:
-                state = .newGame
+                state = .newGame(NewGame.State())
                 return .none
             // .login상태 -> twoFactor가 표시되어있는 상태 -> Response.success 상태
             case .login(.twoFactor(.presented(.twoFactorResponse(.success)))):
-                state = .newGame
+                state = .newGame(NewGame.State())
+                return .none
+                
+            case .newGame(.logoutButtonTapped):
+                // 로그인상태로 전환.
+                state = .login(Login.State())
                 return .none
             case .login:
                 return .none
@@ -39,7 +44,7 @@ public enum TicTacToe {
             Login()
         }
         .ifCaseLet(\.newGame, action: \.newGame) {
-            
+            NewGame()
         }
     }
 }
