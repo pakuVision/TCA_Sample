@@ -42,6 +42,7 @@ public struct Login {
         case loginResponse(Result<AuthenticationResponse, any Error>)
         case twoFactor(PresentationAction<TwoFactor.Action>)
         
+        @CasePathable
         public enum View: BindableAction, Sendable {
             case binding(BindingAction<State>)
             case loginButtonTapped

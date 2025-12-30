@@ -48,3 +48,5 @@ public enum TicTacToe {
         }
     }
 }
+
+extension TicTacToe.State: Equatable { }
