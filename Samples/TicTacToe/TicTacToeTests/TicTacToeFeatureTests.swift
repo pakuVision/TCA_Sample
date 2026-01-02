@@ -86,4 +86,61 @@ struct TicTacToeFeatureTests {
             state = .login(Login.State())
         }
     }
+    
+    @Test
+    func twoFactor() async {
+        let store = TestStore(initialState: TicTacToe.State.login(Login.State())) {
+            TicTacToe.body
+        } withDependencies: {
+            $0.authenticationClient.login = { @Sendable email, password in
+                AuthenticationResponse(token: "test-token", twoFactorRequired: true)
+            }
+            $0.authenticationClient.twoFactor = { @Sendable _, _ in
+                AuthenticationResponse(token: "test-token", twoFactorRequired: false)
+            }
+        }
+        
+        await store.send(\.login.view.binding.email, "test@gmail.com") { state in
+            state.modify(\.login, yield: {
+                $0.email = "test@gmail.com"
+            })
+        }
+        
+        await store.send(\.login.view.binding.password, "password") { state in
+            state.modify(\.login, yield: {
+                $0.password = "password"
+                $0.isFormValid = true
+            })
+        }
+        
+        await store.send(\.login.view.loginButtonTapped) { state in
+            state.modify(\.login, yield: { yield in
+                yield.isLoginRequestInFlight = true
+            })
+        }
+        
+        await store.receive(\.login.loginResponse.success) { state in
+            state.modify(\.login, yield: {
+                $0.twoFactor = TwoFactor.State(token: "test-token")
+                $0.isLoginRequestInFlight = false
+            })
+        }
+        
+        await store.send(\.login.twoFactor.view.binding.code, "1234") { state in
+            state.modify(\.login, yield: {
+                $0.twoFactor?.code = "1234"
+                $0.twoFactor?.isFormValid = true
+            })
+        }
+        
+        await store.send(\.login.twoFactor.view.submitButtonTapped) { state in
+            state.modify(\.login, yield: {
+                $0.twoFactor?.isTwoFactorRequestInFlight = true
+            })
+        }
+        
+        await store.receive(\.login.twoFactor.twoFactorResponse.success) { state in
+            state = .newGame(NewGame.State())
+        }
+    }
 }
