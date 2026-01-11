@@ -50,6 +50,7 @@
 		FAF54C8C2F0794C5001558E0 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF54C8B2F0794C5001558E0 /* LoginTests.swift */; };
 		FAF54C8E2F079D9D001558E0 /* TwoFactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF54C8D2F079D9D001558E0 /* TwoFactorTests.swift */; };
 		FAF54C902F07CFAB001558E0 /* NewGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF54C8F2F07CFAB001558E0 /* NewGameTests.swift */; };
+		FAF54C922F07D68C001558E0 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF54C912F07D68C001558E0 /* GameTests.swift */; };
 		FAFA30352EF29301007550A7 /* SyncUpFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFA30342EF29301007550A7 /* SyncUpFormTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		FAF54C8B2F0794C5001558E0 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		FAF54C8D2F079D9D001558E0 /* TwoFactorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorTests.swift; sourceTree = "<group>"; };
 		FAF54C8F2F07CFAB001558E0 /* NewGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameTests.swift; sourceTree = "<group>"; };
+		FAF54C912F07D68C001558E0 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		FAFA30342EF29301007550A7 /* SyncUpFormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUpFormTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 				FAF54C8B2F0794C5001558E0 /* LoginTests.swift */,
 				FAF54C8D2F079D9D001558E0 /* TwoFactorTests.swift */,
 				FAF54C8F2F07CFAB001558E0 /* NewGameTests.swift */,
+				FAF54C912F07D68C001558E0 /* GameTests.swift */,
 			);
 			path = TicTacToeTests;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				FA28758B2EED53B5009CB091 /* SyncUpsListTests.swift in Sources */,
 				FA28758D2EF01767009CB091 /* SyncUpDetailTests.swift in Sources */,
 				FAFA30352EF29301007550A7 /* SyncUpFormTests.swift in Sources */,
+				FAF54C922F07D68C001558E0 /* GameTests.swift in Sources */,
 				FA07F32E2F03964700B1633A /* TicTacToeFeatureTests.swift in Sources */,
 				FAF54C902F07CFAB001558E0 /* NewGameTests.swift in Sources */,
 				FAF54C8E2F079D9D001558E0 /* TwoFactorTests.swift in Sources */,
